@@ -1,0 +1,5 @@
+# CPU builds for the Python 3.11 smoke test; other packages use the common pins.
+--extra-index-url https://download.pytorch.org/whl/cpu
+-r requirements.txt
+torch==2.13.0+cpu
+torchvision==0.28.0+cpu

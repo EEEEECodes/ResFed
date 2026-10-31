@@ -4,7 +4,6 @@ import torchvision.transforms as transforms
 from tqdm import tqdm
 from torch.utils.data import Subset, DataLoader
 import os
-import PIL
 
 
 def load_data(name, root='./data', download=True, save_pre_data=True):
@@ -68,7 +67,7 @@ def load_data(name, root='./data', download=True, save_pre_data=True):
         train_val_transform = transforms.Compose([
             transforms.ColorJitter(hue=.05, saturation=.05),
             transforms.RandomHorizontalFlip(),
-            transforms.RandomRotation(20, resample=PIL.Image.BILINEAR),
+            transforms.RandomRotation(20, interpolation=transforms.InterpolationMode.BILINEAR),
             transforms.ToTensor(),
         ])
         test_transform = transforms.Compose([

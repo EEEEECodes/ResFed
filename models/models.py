@@ -130,11 +130,11 @@ class LeNet(nn.Module):
 
 def generate_resnet(num_classes=10, in_channels=1, model_name="ResNet18"):
     if model_name == "ResNet18":
-        model = models.resnet18(pretrained=False)
+        model = models.resnet18(weights=None)
     elif model_name == "ResNet50":
-        model = models.resnet50(pretrained=False)
+        model = models.resnet50(weights=None)
     elif model_name == "ResNet152":
-        model = models.resnet152(pretrained=False)
+        model = models.resnet152(weights=None)
     model.conv1 = nn.Conv2d(in_channels, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
     fc_features = model.fc.in_features
     model.fc = nn.Linear(fc_features, num_classes)
@@ -144,12 +144,12 @@ def generate_resnet(num_classes=10, in_channels=1, model_name="ResNet18"):
 
 def generate_vgg(num_classes=10, in_channels=1, model_name="vgg11"):
     if model_name == "VGG11":
-        model = models.vgg11(pretrained=False)
+        model = models.vgg11(weights=None)
     elif model_name == "VGG11_bn":
-        model = models.vgg11_bn(pretrained=False)
+        model = models.vgg11_bn(weights=None)
         return model
     elif model_name == "VGG16":
-        model = models.vgg16(pretrained=False)
+        model = models.vgg16(weights=None)
 
     fc_features = model.classifier[6].in_features
     model.classifier[6] = nn.Linear(fc_features, num_classes)
